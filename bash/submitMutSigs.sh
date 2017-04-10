@@ -4,7 +4,14 @@ outDir=$2
 projectName=$3
 logOdir=$4
 logEdir=$5
+echo "CLUSTER MUT SIG INPUTS"
+echo "dataDir: $dataDir"
+echo "outDir: $outDir"
+echo "projectName: $projectName"
+echo "logOdir: $logOdir"
+echo "logEdit: $logEdir"
 
+echo "SUBMIT PREPARATION OF MUT SIGS"
 # ===============================================================
 # 		prepare mutational signatures
 # ===============================================================
