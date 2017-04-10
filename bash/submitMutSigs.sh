@@ -22,7 +22,7 @@ bsub -K -J "generate_catalogs" -o $logOdir/pepareMutSigs.%J.out \
 	/software/CGP/projects/MutSignatures/perl/bin/getMutationInformationFastaIndex.pl\
 	-i $dataDir/variant_simple.txt\
 	-f simple\
-	-o $outDir\
+	-o $outDir/$projectName\
 	-a /software/CGP/projects/MutSignatures\
 	-s human\
 	-r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/Human/GRCh37d5/genome.fa\
