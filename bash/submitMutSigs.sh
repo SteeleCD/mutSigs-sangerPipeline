@@ -13,7 +13,7 @@ bsub -K -J "generate_catalogs" -o $logOdir/pepareMutSigs.%J.out \
 -q normal -n 1 -R 'select[mem>=500] rusage[mem=500]' -M500 \
 "perl-5.16.3 -I /software/CGP/canpipe/live/lib/perl5/x86_64-linux-thread-multi \
 	/software/CGP/projects/MutSignatures/perl/bin/getMutationInformationFastaIndex.pl\
-	-i $dataDir/all_variants_bulk.txt\
+	-i $dataDir/variant_simple.txt\
 	-f simple\
 	-o $outDir\
 	-a /software/CGP/projects/MutSignatures\
