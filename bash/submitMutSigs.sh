@@ -1,12 +1,10 @@
 #!/bin/bash
 dataDir=$1
-outDir=$2
-projectName=$3
-logOdir=$4
-logEdir=$5
+projectName=$2
+logOdir=$3
+logEdir=$4
 echo "CLUSTER MUT SIG INPUTS"
 echo "dataDir: $dataDir"
-echo "outDir: $outDir"
 echo "projectName: $projectName"
 echo "logOdir: $logOdir"
 echo "logEdit: $logEdir"
@@ -20,9 +18,9 @@ bsub -K -J "generate_catalogs" -o $logOdir/pepareMutSigs.%J.out \
 -q normal -n 1 -R 'select[mem>=500] rusage[mem=500]' -M500 \
 "perl-5.16.3 -I /software/CGP/canpipe/live/lib/perl5/x86_64-linux-thread-multi \
 	/software/CGP/projects/MutSignatures/perl/bin/getMutationInformationFastaIndex.pl\
-	-i $dataDir/variant_simple.txt\
+	-i $dataDir/inputs/variant_simple.txt\
 	-f simple\
-	-o $outDir/$projectName\
+	-o $dataDir/prep/$projectName\
 	-a /software/CGP/projects/MutSignatures\
 	-s human\
 	-r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/Human/GRCh37d5/genome.fa\
@@ -44,10 +42,10 @@ bsub -J "run_signatures" -o $logOdir/runMutSigs.%J.out \
 -q long -n 1 -R 'select[mem>=200] rusage[mem=200]' -M200 \
 "perl /software/CGP/projects/MutSignatures/perl/bin/signatures.pl\
 	-i 1000\
-	-c $outDir/$projectName.mut96\
+	-c $dataDir/prep/$projectName.mut96\
 	-max 10\
 	-a $projectName\
-	-o $outDir/res\
+	-o $dataDir/res\
 	-f 0.01\
 	-d"
 
