@@ -39,11 +39,11 @@ bsub -K -J "generate_catalogs" -o $logOdir/pepareMutSigs.%J.out \
 # ==============================================================
 bsub -J "run_signatures" -o $logOdir/runMutSigs.%J.out \
 -e $logEdir/runMutSigs.%J.out \
--q long -n 1 -R 'select[mem>=200] rusage[mem=200]' -M200 \
+-q long -n 1 -R 'select[mem>=4000] rusage[mem=4000]' -M4000 \
 "perl /software/CGP/projects/MutSignatures/perl/bin/signatures.pl\
 	-i 1000\
 	-c $dataDir/prep/$projectName.mut96\
-	-max 10\
+	-max 20\
 	-a $projectName\
 	-o $dataDir/res\
 	-f 0.01\
