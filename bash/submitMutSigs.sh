@@ -13,8 +13,8 @@ echo "SUBMIT PREPARATION OF MUT SIGS"
 # ===============================================================
 # 		prepare mutational signatures
 # ===============================================================
-bsub -K -J "generate_catalogs" -o $logOdir/pepareMutSigs.%J.out \
--e $logEdir/pepareMutSigs.%J.out \
+bsub -K -J "generate_catalogs-$2" -o $logOdir/pepareMutSigs-$2.%J.out \
+-e $logEdir/pepareMutSigs-$2.%J.out \
 -q normal -n 1 -R 'select[mem>=500] rusage[mem=500]' -M500 \
 "perl-5.16.3 -I /software/CGP/canpipe/live/lib/perl5/x86_64-linux-thread-multi \
 	/software/CGP/projects/MutSignatures/perl/bin/getMutationInformationFastaIndex.pl\
@@ -37,13 +37,13 @@ bsub -K -J "generate_catalogs" -o $logOdir/pepareMutSigs.%J.out \
 # ===============================================================
 # 		run mutational signatures
 # ==============================================================
-bsub -J "run_signatures" -o $logOdir/runMutSigs.%J.out \
--e $logEdir/runMutSigs.%J.out \
+bsub -J "run_signatures-$2" -o $logOdir/runMutSigs-$2.%J.out \
+-e $logEdir/runMutSigs-$2.%J.out \
 -q long -n 1 -R 'select[mem>=4000] rusage[mem=4000]' -M4000 \
 "perl /software/CGP/projects/MutSignatures/perl/bin/signatures.pl\
 	-i 1000\
 	-c $dataDir/prep/$projectName.mut96\
-	-max 20\
+	-max 10\
 	-a $projectName\
 	-o $dataDir/res\
 	-f 0.01\
