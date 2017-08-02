@@ -1,8 +1,9 @@
 #!/bin/bash
-dataDir=$1
-projectName=$2
-logOdir=$3
-logEdir=$4
+nSigs=$1
+dataDir=$2
+projectName=$3
+logOdir=$4
+logEdir=$5
 echo "CLUSTER MUT SIG INPUTS"
 echo "dataDir: $dataDir"
 echo "projectName: $projectName"
@@ -43,7 +44,7 @@ bsub -J "run_signatures-$2" -o $logOdir/runMutSigs-$2.%J.out \
 "perl /software/CGP/projects/MutSignatures/perl/bin/signatures.pl\
 	-i 1000\
 	-c $dataDir/prep/$projectName.mut96\
-	-max 10\
+	-max $nSigs\
 	-a $projectName\
 	-o $dataDir/res\
 	-f 0.01\

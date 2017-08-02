@@ -1,9 +1,10 @@
 #!/bin/bash
 project=$1
-resDir=$2
-projectName=$3
-logOdir=$4
-logEdir=$5
+nSigs=$2
+resDir=$3
+projectName=$4
+logOdir=$5
+logEdir=$6
 mkdir $resDir/prep
 mkdir $resDir/inputs
 mkdir $resDir/res
@@ -13,6 +14,6 @@ mkdir $resDir/res
 # bulkFile, outFile, projectName
 Rscript --vanilla ../R/prepareMutSignatures.R $resDir/inputs/all_variants_bulk.txt $resDir/inputs/variant_simple.txt $projectName
 # run mutational signatures 
-source submitMutSigs.sh $resDir $projectName $logOdir $logEdir
+source submitMutSigs.sh $nSigs $resDir $projectName $logOdir $logEdir
 
 
